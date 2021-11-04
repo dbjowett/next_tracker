@@ -1,10 +1,9 @@
-import styles from '../styles/Home.module.css'
-import NavBar from '../components/Nav'
+import Form from "../components/Form"
 
-export default function Home() {
+export default function IndexPage() {
   return (
-    <div className={styles.container}>
-      <NavBar/>
-    </div>
+      <div>
+        <Form/>
+      </div>
   )
 }
