@@ -10,8 +10,8 @@ const ButtonStyled = styled.button`
     border: none;
 `;
 
-export default function Button({text}) {
+export default function Button({text, type}) {
     return (
-        <ButtonStyled>{text}</ButtonStyled>
+        <ButtonStyled type={type}>{text}</ButtonStyled>
     )
 }

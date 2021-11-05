@@ -18,7 +18,7 @@ const NavStyled = styled.nav`
     a {
         padding: 10px;
     }
-    a:hover{
+    a:hover:not(:first-of-type){
         color: skyblue;
     }
     a:last-of-type{
