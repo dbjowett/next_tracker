@@ -2,7 +2,6 @@ import { useState } from "react"
 import styled from "styled-components";
 import Button from "./Button";
 import axios from 'axios';
-import useSWR from 'swr';
 
 
 const FormStyled = styled.form`
@@ -25,15 +24,17 @@ const FormStyled = styled.form`
 
 
 export default function Form(){
+
+
     const [text, setText] = useState('');
 
-    const onSubmitForm = async (event)=> {
+    const onSubmitForm = event => {
         event.preventDefault();
-        const response = await axios.get('/api/tracking', {params: { text }})
-            .then((res)=>{console.log(res.data)})
-            .catch((e)=>console.log(e));
-        return false;
-    }
+        async () => {
+            const {data} = await axios('/api/tracking', {params: {text}});
+            console.log(data)
+            return data;
+    }    
 
     return(
         <FormStyled onSubmit={onSubmitForm} action="">
@@ -51,3 +52,4 @@ export default function Form(){
         </FormStyled>
     )
 }
+};
