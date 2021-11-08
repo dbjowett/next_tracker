@@ -1,20 +1,30 @@
-import axios from 'axios';
 const url = 'https://api.ship24.com/public/v1/tracking/search';
 
-var data = '{"trackingNumber": "S24DEMO456393",\n"originCountryCode": "CN", \n"destinationCountryCode": "US",\n"destinationPostCode": "94901",\n"shippingDate": "2021-01-22T10:09:00.000Z"}';
+const myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json; charset=utf-8");
+myHeaders.append("Authorization", `Bearer ${process.env.API_KEY}`);
+
+const options = {
+  "trackingNumber": "S24DEMO456393",
+  "originCountryCode": "CN",
+  "destinationCountryCode": "US",
+  "destinationPostCode": "94901",
+  "shippingDate": "2021-01-22T10:09:00.000Z"
+}
+
+const optionsString = JSON.stringify(options);
 
 var config = {
-    method: 'post',
-    url: 'https://api.ship24.com/public/v1/tracking/search',
-    headers: { 
-      'Content-Type': 'application/json; charset=utf-8', 
-      'Authorization': `Bearer ${process.env.API_KEY}` 
-    },
-    data : data
-  };
+  method: 'POST',
+  headers: myHeaders,
+  body: optionsString,
+  redirect: 'follow'
+};
 
-export default fetchPackages = (req, res) => {
-    axios(url, config);
-    res.status(200).json({ name: 'John Doe' })
+export default async function(req, res) {
+  const response = await fetch(url, config);
+  const data = await response.text()
+  res.send(data);
+  // res.send( 'John Doe');
   }
   

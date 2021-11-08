@@ -24,16 +24,15 @@ const FormStyled = styled.form`
 
 
 export default function Form(){
-
-
     const [text, setText] = useState('');
 
     const onSubmitForm = event => {
         event.preventDefault();
-        async () => {
-            const {data} = await axios('/api/tracking', {params: {text}});
-            console.log(data)
-            return data;
+        const getTracking = async () => {
+            const data = await fetch('/api/tracking');
+            // return data
+        }
+        getTracking();
     }    
 
     return(
@@ -51,5 +50,6 @@ export default function Form(){
             <Button text="Submit" type="submit"/>
         </FormStyled>
     )
-}
 };
+
+// , {params: {text}}
